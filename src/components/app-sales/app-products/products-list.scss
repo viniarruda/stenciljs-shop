@@ -1,0 +1,12 @@
+.sales-list {
+  display: flex;
+  flex-flow: row wrap;
+  ion-card {
+    flex: 1;
+    ion-content {
+      ion-card-title {
+        color: $primary-color;
+      }
+    }
+  }
+} 
