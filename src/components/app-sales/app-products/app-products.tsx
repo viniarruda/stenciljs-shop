@@ -1,10 +1,12 @@
-import { Component } from '@stencil/core';
+import {Component, Prop} from '@stencil/core';
 
 @Component({
   tag: 'products-item',
   styleUrl: './products-list.scss'
 })
 export class ProductsList {
+  @Prop() nameProduct: string;
+  @Prop() shortDescription: string;
 
   render() {
     return (
@@ -12,11 +14,10 @@ export class ProductsList {
         {/*<img src="http://www.authenticangelsshop.com/images//mlb_jerseys_new/los_angeles_angels/angels_736.jpg"/>*/}
         <ion-card-content>
           <ion-card-title>
-            Nine Inch Nails Live
+            {this.nameProduct}
           </ion-card-title>
           <p>
-            The most popular industrial group ever, and largely
-            responsible for bringing the music to a mass audience.
+            {this.shortDescription}
           </p>
           <ion-button href={`/sales/product/1`} slot='end' color='primary' fill='clear'>
             Detail

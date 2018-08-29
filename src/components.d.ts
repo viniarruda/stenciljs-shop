@@ -40,7 +40,8 @@ declare global {
     }
 
     interface ProductsItem {
-
+      'nameProduct': string;
+      'shortDescription': string;
     }
 
     interface ProductDetail {
@@ -141,7 +142,8 @@ declare global {
     }
 
     export interface ProductsItemAttributes extends HTMLAttributes {
-
+      'nameProduct'?: string;
+      'shortDescription'?: string;
     }
 
     export interface ProductDetailAttributes extends HTMLAttributes {

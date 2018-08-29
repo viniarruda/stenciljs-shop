@@ -32,7 +32,6 @@ export class AppLayout {
               </ion-button>
             </ion-buttons>
           </ion-toolbar>
-
         </ion-header>
         <div>
           <slot />
