@@ -34,9 +34,8 @@ export class MyApp {
     return (
       <ion-app>
         <ion-router useHash={false}>
-          <ion-route url="/" component="app-home" />
           <ion-route url='/sales' component='sales-page' />
-          <ion-route url='/sales/product/:id' component='product-detail' />
+          <ion-route url='/sales/product/:productId' component='product-detail' />
         </ion-router>
         <ion-nav />
       </ion-app>

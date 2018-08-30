@@ -3,17 +3,16 @@ import { Product } from '../../helpers/interfaces';
 import { getProducts } from '../../helpers/http-service';
 
 @Component({
-  tag: 'sales-page'
+  tag: 'sales-page',
+  styleUrl: 'app-sales.scss'
 })
 export class MyComponent {
 
   @State() products: Product;
-  // Indicate that name should be a public property on the component
-  @Prop() name: string;
   @Prop({ connect: 'ion-toast-controller' }) toastCtrl: HTMLIonToastControllerElement;
-  @Element() el: Element;
+  @Element() el: HTMLElement;
 
-  componentDidLoad() {
+  async componentDidLoad() {
     console.log('FETCH', getProducts());
     this.getProducts();
   }
@@ -26,28 +25,30 @@ export class MyComponent {
   async getProducts() {
     try {
       this.products = await getProducts();
-    } catch(err) {
-      this.showErrorToast();
+    }
+    catch (err) {
       console.log(err);
+      this.showErrorToast();
     }
     console.log(this.products);
+  }
+
+  navigateToDetail(productId: string) {
+    (this.el.closest('ion-nav') as HTMLIonNavElement).push('product-detail', { productId });
   }
 
   render() {
     return (
       <app-layout>
-        <ion-infinite-scroll id="infinite-scroll">
-          <ion-infinite-scroll-content
-            loadingSpinner="bubbles"
-            loadingText="Loading more data...">
-            {
-              this.products &&
-              this.products.items.map((product, key) =>
-                <products-item key={key} nameProduct={product.name} shortDescription={product.shortDescription}></products-item>
-              )
-            }
-          </ion-infinite-scroll-content>
-        </ion-infinite-scroll>
+        <ion-list class="product-list">
+          {
+            this.products &&
+            this.products.items.map((product, key) =>
+              <products-item key={key} product={product}></products-item>
+            )
+          }
+          {console.log('html sales', this.products)}
+        </ion-list>
       </app-layout>
     );
   }

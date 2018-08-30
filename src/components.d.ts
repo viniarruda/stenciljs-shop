@@ -10,6 +10,9 @@ import '@ionic/core';
 import 'ionicons';
 
 
+import {
+  Item,
+} from './helpers/interfaces';
 
 
 declare global {
@@ -40,16 +43,16 @@ declare global {
     }
 
     interface ProductsItem {
-      'nameProduct': string;
-      'shortDescription': string;
+      'handleClick': any;
+      'product': Item;
     }
 
     interface ProductDetail {
-
+      'productId': string;
     }
 
     interface SalesPage {
-      'name': string;
+
     }
 
     interface MyApp {
@@ -142,16 +145,16 @@ declare global {
     }
 
     export interface ProductsItemAttributes extends HTMLAttributes {
-      'nameProduct'?: string;
-      'shortDescription'?: string;
+      'handleClick'?: any;
+      'product'?: Item;
     }
 
     export interface ProductDetailAttributes extends HTMLAttributes {
-
+      'productId'?: string;
     }
 
     export interface SalesPageAttributes extends HTMLAttributes {
-      'name'?: string;
+
     }
 
     export interface MyAppAttributes extends HTMLAttributes {

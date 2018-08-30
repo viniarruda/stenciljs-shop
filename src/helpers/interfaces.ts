@@ -5,22 +5,41 @@ export interface Product {
   nextPage: String;
   totalPages: Number;
   items: Item[];
+
+  itemId: number;
+  name: string;
+  salePrice: number;
+  thumbnailImage: string;
+  shortDescription: string;
+  longDescription: string;
+  largeImage: string;
+  color: string;
+  offerType: string;
+  stock: string;
+  modelNumber: string;
+  availableOnline: Boolean;
+  imageEntities: Gallery[];
 }
 
 export interface Item {
-  itemId: Number;
+  itemId: number;
   name: string;
-  salePrice: Number;
+  salePrice: number;
   shortDescription: string;
-  longDescription: String;
-  brandName: String;
-  thumbnailImage: String;
-  mediumImage: String;
-  largeImage: String;
-  size: String;
-  color: String;
+  longDescription: string;
+  brandName: string;
+  thumbnailImage: string;
+  mediumImage: string;
+  largeImage: string;
+  size: string;
+  color: string;
   shipToStore: Boolean;
-  store: String;
-  gender: String;
-  availableOnline: String;
+  store: string;
+  gender: string;
+  availableOnline: string;
+}
+
+export class Gallery {
+  thumbnailImage: string;
+  largeImage: string;
 }
