@@ -11,9 +11,7 @@ export class MyComponent {
   @State() products: Product;
   @Prop({ connect: 'ion-toast-controller' }) toastCtrl: HTMLIonToastControllerElement;
   @Element() el: HTMLElement;
-
-
-
+  
   async componentDidLoad() {
     console.log('FETCH', getProducts());
     this.getProducts();

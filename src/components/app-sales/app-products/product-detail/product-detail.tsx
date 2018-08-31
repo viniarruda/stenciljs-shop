@@ -11,7 +11,7 @@ export class ProductDetail {
   @Prop({ connect: 'ion-toast-controller' }) toastCtrl: HTMLIonToastControllerElement;
   @State() item: Product;
   @Prop() productId: string;
-
+  @Prop({ context: 'cartService' }) private cartService: any;
 
   async componentDidLoad() {
     try {
@@ -31,6 +31,13 @@ export class ProductDetail {
   async getProductById() {
     this.item = await getProductById(this.productId);
     console.log('entrou', this.item);
+  }
+
+  insertProduct(item) {
+    this.cartService.cart.push({
+      item
+    })
+    console.log('CONTEXT NO DETALHE DO PRODUTO', this.cartService);
   }
 
   render() {
@@ -66,7 +73,7 @@ export class ProductDetail {
                 <ion-button size="small" color="secondary">
                   <ion-icon slot="icon-only" name="cube"></ion-icon> Encomendar
                 </ion-button>
-                <ion-button size="small" color="primary" >Comprar</ion-button>
+                <ion-button size="small" color="primary" onClick={() => this.insertProduct(this.item)}>Comprar</ion-button>
                 <div class="back">
                   <ion-button size="small" color="secondary" href={`/sales`}>
                     Voltar
