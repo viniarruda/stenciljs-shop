@@ -1,4 +1,4 @@
-import {Component, Prop, State} from '@stencil/core';
+import {Component, Prop, State } from '@stencil/core';
 import {getProductById} from "../../../../helpers/http-service";
 import {Product} from "../../../../helpers/interfaces";
 
@@ -11,6 +11,7 @@ export class ProductDetail {
   @Prop({ connect: 'ion-toast-controller' }) toastCtrl: HTMLIonToastControllerElement;
   @State() item: Product;
   @Prop() productId: string;
+
 
   async componentDidLoad() {
     try {

@@ -34,6 +34,7 @@ export class AppLayout {
         </ion-toolbar>
       </ion-header>,
       <div>
+        <ion-searchbar animated></ion-searchbar>
         <slot />
       </div>
     ]

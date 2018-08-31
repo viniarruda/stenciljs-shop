@@ -1,6 +1,6 @@
-import { Component, Prop, State, Element } from '@stencil/core';
+import { Component, Prop, State, Element, Listen } from '@stencil/core';
 import { Product } from '../../helpers/interfaces';
-import { getProducts } from '../../helpers/http-service';
+import { getProducts, doSearch } from '../../helpers/http-service';
 
 @Component({
   tag: 'sales-page',
@@ -12,6 +12,8 @@ export class MyComponent {
   @Prop({ connect: 'ion-toast-controller' }) toastCtrl: HTMLIonToastControllerElement;
   @Element() el: HTMLElement;
 
+
+
   async componentDidLoad() {
     console.log('FETCH', getProducts());
     this.getProducts();
@@ -20,6 +22,22 @@ export class MyComponent {
   async showErrorToast() {
     const toast = await this.toastCtrl.create({ message: 'Error loading data', duration: 1000 });
     toast.present();
+  }
+
+  @Listen('ionInput')
+  search(ev) {
+    setTimeout(async () => {
+      if (ev.target.value.length > 0) {
+        try {
+          const searchTerm = ev.target.value;
+          this.products = await doSearch(searchTerm);
+        }
+        catch (err) {
+          this.products = await getProducts();
+        }
+      } else {
+      }
+    }, 500);
   }
 
   async getProducts() {

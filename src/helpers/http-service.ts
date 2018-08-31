@@ -23,5 +23,16 @@ const getProductById = (id: string) => {
   })
 }
 
+const doSearch = (term: string) => {
+  const apiKey = '8x83x2azqeaqvq7pzaqmvgg5';
+  const url = `http://api.walmartlabs.com/v1/search?query=${term}&format=json&apiKey=${apiKey}`;
 
-export { getProducts, getProductById };
+  return fetch(url).then((res) => {
+    return res.json()
+  }).then((data) => {
+    return data;
+  })
+}
+
+
+export { getProducts, getProductById, doSearch };

@@ -1,4 +1,4 @@
-import {Component, Prop, Element} from '@stencil/core';
+import {Component, Prop, Element, EventEmitter} from '@stencil/core';
 import {Item} from "../../../helpers/interfaces";
 
 @Component({
@@ -9,6 +9,11 @@ export class ProductsList {
   @Prop() product: Item;
   @Prop() handleClick;
   @Element() el: HTMLElement;
+  @Prop({ context: 'emit' }) private Emitter : EventEmitter;
+
+  emitterHandler(item: Item) {
+    this.Emitter.emit(item);
+  }
 
   navigateToDetail(productId: string) {
     (this.el.closest('ion-nav') as HTMLIonNavElement).push('product-detail', { productId });
@@ -26,6 +31,9 @@ export class ProductsList {
             <p>
               {this.product.shortDescription}
             </p>
+            <span>
+              R${this.product.salePrice}
+            </span>
             <ion-button href={`/sales/product/${this.product.itemId}`} slot='end' color='primary' fill='clear' onClick={this.handleClick}>
               Detail
             </ion-button>
